@@ -11,7 +11,7 @@ export const calculateBmi = (height: number, weight: number): string => {
     if (bmi < 25) return "Normal (healthy weight)";
     if (bmi < 30) return "Overweight";
     return "Obese";
-    }
+    };
 
 // exercise 9.1
 

@@ -39,7 +39,7 @@ const calculateExercises = (dailyExercise: Array<number>, target: number): Resul
         target,
         average
     };
-}
+};
 
 // exercise 9.2
 // const exerciseHours: Array<number> =[ 3, 0, 2, 4.5, 0, 3, 1];
@@ -49,14 +49,15 @@ const calculateExercises = (dailyExercise: Array<number>, target: number): Resul
 
 // exercise 9.3
 const args = parseArguments(process.argv);
-let target: number  = null
+let target: number;
 let exerciseHours: Array<number> = [];
 try {
     target = Number(args[0]);
     exerciseHours = args.slice(1).map(arg => Number(arg));
 } catch (error) {
-    throw new Error("Error, issues with arguments: " + error.message);
-}
+    const errorMessage = (error as Error).message;
 
+    throw new Error("Error, issues with arguments: " + errorMessage);
+}
 
 console.log(calculateExercises(exerciseHours, target));
