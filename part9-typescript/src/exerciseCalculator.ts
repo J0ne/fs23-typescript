@@ -1,3 +1,5 @@
+import { isNotNumber, parseArguments } from '../../utils';
+
 interface Result {
     periodLength: number,
     trainingDays: number,
@@ -9,7 +11,14 @@ interface Result {
 }
 
 const calculateExercises = (dailyExercise: Array<number>, target: number): Result => {
+    if (isNotNumber(target)) throw new Error("Target is not a number");
+
+    console.log(dailyExercise, target);
     const periodLength = dailyExercise.length;
+
+    if(periodLength === 0) throw new Error("Provide at least one day of exercise");
+
+
     const trainingDays = dailyExercise.filter(hours => hours > 0).length;
     const average = dailyExercise.reduce((previous, current) => previous + current, 0) / periodLength;
     const success = average >= target;
@@ -40,8 +49,15 @@ const calculateExercises = (dailyExercise: Array<number>, target: number): Resul
 
 
 // exercise 9.3
-const args = process.argv.slice(2);
-const target: number = Number(args[0]);
-const exerciseHours: Array<number> = args.slice(1).map(hours => Number(hours));
+const args = parseArguments(process.argv);
+let target: number  = null
+let exerciseHours: Array<number> = [];
+try {
+    target = Number(args[0]);
+    exerciseHours = args.slice(1).map(arg => Number(arg));
+} catch (error) {
+    throw new Error("Error, issues with arguments: " + error.message);
+}
+
 
 console.log(calculateExercises(exerciseHours, target));
