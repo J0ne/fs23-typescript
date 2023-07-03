@@ -1,0 +1,19 @@
+{
+  "name": "part9-c",
+  "version": "1.0.0",
+  "description": "Typing an Express app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/J0ne/fs23.git"
+  },
+  "author": "JJM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/J0ne/fs23/issues"
+  },
+  "homepage": "https://github.com/J0ne/fs23#readme"
+}
