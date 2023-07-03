@@ -1,6 +1,6 @@
-import { isNotNumber, parseArguments } from '../../utils';
+import { isNotNumber } from './utils';
 
-interface Result {
+export interface Result {
     periodLength: number,
     trainingDays: number,
     success: boolean,
@@ -10,7 +10,7 @@ interface Result {
     average: number
 }
 
-const calculateExercises = (dailyExercise: Array<number>, target: number): Result => {
+export const calculateExercises = (dailyExercise: Array<number>, target: number): Result => {
     if (isNotNumber(target)) throw new Error("Target is not a number");
 
     console.log(dailyExercise, target);
@@ -48,16 +48,16 @@ const calculateExercises = (dailyExercise: Array<number>, target: number): Resul
 
 
 // exercise 9.3
-const args = parseArguments(process.argv);
-let target: number;
-let exerciseHours: Array<number> = [];
-try {
-    target = Number(args[0]);
-    exerciseHours = args.slice(1).map(arg => Number(arg));
-} catch (error) {
-    const errorMessage = (error as Error).message;
+// const args = parseArguments(process.argv);
+// let target: number;
+// let exerciseHours: Array<number> = [];
+// try {
+//     target = Number(args[0]);
+//     exerciseHours = args.slice(1).map(arg => Number(arg));
+// } catch (error) {
+//     const errorMessage = (error as Error).message;
 
-    throw new Error("Error, issues with arguments: " + errorMessage);
-}
+//     throw new Error("Error, issues with arguments: " + errorMessage);
+// }
 
-console.log(calculateExercises(exerciseHours, target));
+// console.log(calculateExercises(exerciseHours, target));
