@@ -18,7 +18,6 @@ const calculateExercises = (dailyExercise: Array<number>, target: number): Resul
 
     if(periodLength === 0) throw new Error("Provide at least one day of exercise");
 
-
     const trainingDays = dailyExercise.filter(hours => hours > 0).length;
     const average = dailyExercise.reduce((previous, current) => previous + current, 0) / periodLength;
     const success = average >= target;
