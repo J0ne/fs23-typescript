@@ -1,0 +1,19 @@
+
+.course-block{
+    vertical-align: top;
+
+}
+
+.course-header{
+    font-weight: bolder;
+    margin: 0px;
+}
+
+.description{
+    font-weight: normal;
+    font-style: italic;
+}
+
+.required{
+font-weight: normal;
+}
