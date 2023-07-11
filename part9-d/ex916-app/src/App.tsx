@@ -24,7 +24,7 @@ function App() {
       <header className="App-header">
       <h1>Diaries</h1>
       </header>
-      <div className="content">
+      <div>
         <Content diaries={diaries} />
       </div>
 
