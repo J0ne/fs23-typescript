@@ -1,6 +1,6 @@
 body {
-    background-color: #282c34;
-    color: white;
+    background-color: lightgray;
+    color: #282c34;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -9,20 +9,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-}
 
 .content{
-  margin: 0;
+  margin: 10px;
   padding: 5px;
   border: 1px solid #282c34;
   border-radius: 5px;
   border: 1px solid darkgrey;
+    align-items: center;
+      justify-content: center;
 }
 
 .bold {
@@ -35,4 +30,8 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 16px;
+}
+
+.form > * {
+  margin: 15px;
 }
