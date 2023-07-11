@@ -12,6 +12,7 @@ const getAll = async () => {
 };
 
 const create = async (diary: NewDiaryEntry) => {
+
     const { data } = await axios.post<NewDiaryEntry>(
         `${apiBaseUrl}/diaries`,
         diary
@@ -22,5 +23,5 @@ const create = async (diary: NewDiaryEntry) => {
 
 export default {
   getAll,
-    create
+  create
 };

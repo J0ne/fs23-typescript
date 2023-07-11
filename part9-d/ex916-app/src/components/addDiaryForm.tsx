@@ -1,9 +1,13 @@
 
-import {  TextField, Button, Radio, RadioGroup, FormControlLabel } from '@mui/material';
+import {  TextField, Button, Radio, RadioGroup, FormControlLabel, Alert } from '@mui/material';
 import { useState, SyntheticEvent } from 'react';
 import diaryService from '../services/diaries';
 import { NewDiaryEntry } from '../types';
+import axios from 'axios';
 
+interface ValidationError {
+  data: string | undefined;
+}
 
 
 interface Props {
@@ -17,6 +21,8 @@ export const AddDiaryForm = ({ onSubmit }: Props): JSX.Element => {
     const [visibility, setVisibility] = useState('');
     const [comment, setComment] = useState('');
 
+    const [error, setError] = useState<string | null>('');
+
     const addDiary = async (event: SyntheticEvent) => {
         event.preventDefault();
         const newDiary: NewDiaryEntry = {
@@ -26,13 +32,37 @@ export const AddDiaryForm = ({ onSubmit }: Props): JSX.Element => {
             comment
         };
 
-        await diaryService.create(newDiary);
-        onSubmit();
+        try {
+            await diaryService.create(newDiary);
+            onSubmit();
+            resetForm();
+
+        } catch (error) {
+            if (axios.isAxiosError<ValidationError, Record<string, unknown>>(error)) {
+                const msg = error.response?.data;
+
+                if(msg && typeof msg === 'string') {
+                    setError(msg);
+                }
+
+             } else {
+                 console.error(error);
+             }
+
+        }
+        function resetForm() {
+            setDate('');
+            setWeather('');
+            setVisibility('');
+            setComment('');
+            setError(null);
+        }
     };
 
     return (
         <form className='form' onSubmit={addDiary}>
         <h2>Add a Diary</h2>
+         {error && <Alert severity="error">{error}</Alert>}
         <div>
             <TextField
                 label="Date"
