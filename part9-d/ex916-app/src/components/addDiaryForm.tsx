@@ -22,13 +22,26 @@ export const AddDiaryForm = ({ onSubmit }: Props): JSX.Element => {
     const [comment, setComment] = useState('');
 
     const [error, setError] = useState<string | null>('');
+    const resetForm = () => {
+            setDate('');
+            setWeather('');
+            setVisibility('');
+            setComment('');
+            setError(null);
+        }
 
     const addDiary = async (event: SyntheticEvent) => {
         event.preventDefault();
+
+        if(!date || !weather || !visibility) {
+            setError('Please fill in all fields');
+            return;
+        }
+
         const newDiary: NewDiaryEntry = {
             date,
-            weather,
             visibility,
+            weather,
             comment
         };
 
@@ -49,14 +62,9 @@ export const AddDiaryForm = ({ onSubmit }: Props): JSX.Element => {
                  console.error(error);
              }
 
+
         }
-        function resetForm() {
-            setDate('');
-            setWeather('');
-            setVisibility('');
-            setComment('');
-            setError(null);
-        }
+
     };
 
     return (
@@ -64,17 +72,20 @@ export const AddDiaryForm = ({ onSubmit }: Props): JSX.Element => {
         <h2>Add a Diary</h2>
          {error && <Alert severity="error">{error}</Alert>}
         <div>
-            <TextField
+            <input type="date"   value={date} onChange={({ target }) => setDate(target.value)}/>
+
+            {/* <TextField
                 label="Date"
                 placeholder="YYYY-MM-DD"
                 value={date}
                 onChange={({ target }) => setDate(target.value)}
-            />
+            /> */}
         </div>
         <div>
             <RadioGroup row aria-label="visibility" name="row-radio-buttons-group"
+            value={visibility}
             onChange={({ target }) => setVisibility(target.value)}>
-                <FormControlLabel value="Great" control={<Radio />} label="Great" />
+                <FormControlLabel value="great" control={<Radio />} label="Great" />
                 <FormControlLabel value="good" control={<Radio />} label="Good" />
                 <FormControlLabel value="ok" control={<Radio />} label="Ok" />
                 <FormControlLabel value="poor" control={<Radio />} label="Poor" />
@@ -83,6 +94,7 @@ export const AddDiaryForm = ({ onSubmit }: Props): JSX.Element => {
 
         <div>
             <RadioGroup row aria-label="weather" name="row-radio-buttons-group"
+            value={weather}
             onChange={({ target }) => setWeather(target.value)}>
                     <FormControlLabel value="sunny" control={<Radio />} label="Sunny" />
                     <FormControlLabel value="rainy" control={<Radio />} label="Rainy" />
