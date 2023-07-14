@@ -1,10 +1,10 @@
 import data from '../../data/patients';
 import { v1 as uuid } from 'uuid';
 
-import { PatientEntry, NonSensitivePatientEntry, NewPatientEntry, Gender } from '../types';
+import { Patient, NonSensitivePatientEntry, NewPatientEntry } from '../types';
 import toNewPatientEntry from '../utils';
 
-const getEntries = (): Array<PatientEntry> => {
+const getEntries = (): Array<Patient> => {
     return data.map(({
         id,
         name,
@@ -12,21 +12,22 @@ const getEntries = (): Array<PatientEntry> => {
         gender,
         occupation,
         ssn,
+        entries
      }) => ({
         id,
         name,
         dateOfBirth,
-        gender: gender as Gender,
+        gender: gender ,
         occupation,
         ssn,
-        entries: []
+        entries
     }));
 };
 
 
 
 
-const allEntries: Array<PatientEntry> = data as Array<PatientEntry>;
+const allEntries: Array<Patient> = data ;
 
 
 const getNonSensitiveEntries = (): Array<NonSensitivePatientEntry> => {
@@ -36,17 +37,19 @@ const getNonSensitiveEntries = (): Array<NonSensitivePatientEntry> => {
         dateOfBirth,
         gender,
         occupation,
+        entries
      }) => ({
         id,
         name,
         dateOfBirth,
-        gender: gender as Gender,
+        gender: gender ,
         occupation,
+        entries
     }));
 };
 
-const addNewPatient = (entry: NewPatientEntry): PatientEntry => {
-    const newPatientEntry =  toNewPatientEntry(entry) as PatientEntry;
+const addNewPatient = (entry: NewPatientEntry): Patient => {
+    const newPatientEntry =  toNewPatientEntry(entry) as Patient;
     newPatientEntry.id = uuid();
     newPatientEntry.entries = [];
     allEntries.push(newPatientEntry);
