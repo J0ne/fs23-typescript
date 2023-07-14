@@ -1,12 +1,12 @@
 import data from '../../data/diagnoses';
 
-import { DiagnoseEntry, NonSensitiveDiagnoseEntry } from '../types';
+import { Diagnosis, NonSensitiveDiagnosis } from '../types';
 
-const getEntries = (): Array<DiagnoseEntry> => {
+const getEntries = (): Array<Diagnosis> => {
     return data;
 };
 
-const getNonSensitiveEntries = (): Array<NonSensitiveDiagnoseEntry> => {
+const getNonSensitiveEntries = (): Array<NonSensitiveDiagnosis> => {
     return data.map(({ code, name }) => ({
         code,
         name

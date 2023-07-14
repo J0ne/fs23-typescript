@@ -1,7 +1,7 @@
 import data from '../../data/patients';
 import { v1 as uuid } from 'uuid';
 
-import { Patient, NonSensitivePatientEntry, NewPatientEntry, EntryType } from '../types';
+import { Patient, NonSensitivePatientEntry, NewPatientEntry} from '../types';
 import toNewPatientEntry from '../utils';
 
 const getEntries = (): Array<Patient> => {
@@ -20,21 +20,7 @@ const getEntries = (): Array<Patient> => {
         dateOfBirth,
         gender,
         occupation,
-        entries: entries.map(({
-            id,
-
-            description,
-            date,
-            specialist,
-            type,
-        }) => ({
-            id,
-            description,
-            date,
-            specialist,
-            type: type as unknown as EntryType,
-        }))
-
+        entries
     }));
 };
 
