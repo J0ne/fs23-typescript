@@ -13,9 +13,20 @@ const getNonSensitiveEntries = (): Array<NonSensitiveDiagnosis> => {
     }));
 };
 
+const addNewDiagnosis = (entry: Diagnosis): Diagnosis => {
+    const newDiagnosisEntry = {
+        ...entry
+    };
+    data.push(newDiagnosisEntry);
+    return newDiagnosisEntry;
+};
+
+
+
 export default {
     getEntries,
-    getNonSensitiveEntries
+    getNonSensitiveEntries,
+    addNewDiagnosis
 };
 
 

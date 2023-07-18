@@ -2,7 +2,7 @@ import data from '../../data/patients';
 import { v1 as uuid } from 'uuid';
 
 import { Patient, NonSensitivePatientEntry, NewPatientEntry} from '../types';
-import toNewPatientEntry from '../utils';
+import {toNewPatientEntry} from '../utils';
 
 const getEntries = (): Array<Patient> => {
     return data.map(({

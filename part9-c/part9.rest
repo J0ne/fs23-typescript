@@ -12,3 +12,18 @@ GET http://localhost:3001/api/patients
 
 ###
 GET http://localhost:3001/api/patients/d2773336-f723-11e9-8f0b-362b9e155667
+
+
+###
+GET http://localhost:3001/api/diagnoses
+
+
+###
+POST http://localhost:3001/api/diagnoses
+content-type: application/json
+
+{
+    "code": "M99.9",
+    "name": "Something of new",
+    "latin": "lorem ipsum"
+}

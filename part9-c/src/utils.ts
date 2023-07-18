@@ -1,12 +1,11 @@
-import { Gender } from './types';
-import { NewPatientEntry } from './types';
+import { Diagnosis, Gender, NewPatientEntry } from './types';
 
 
 const isString = (text: unknown): text is string => {
     return typeof text === 'string' || text instanceof String;
 };
 
-const toNewPatientEntry = (object: unknown): NewPatientEntry => {
+export const toNewPatientEntry = (object: unknown): NewPatientEntry => {
 
     if ( !object || typeof object !== 'object' ) {
     throw new Error('Incorrect or missing data');
@@ -74,7 +73,42 @@ const parseSsn = (ssn: unknown): string => {
     return ssn;
 };
 
+export const toNewDiagnosis = (object: unknown): Diagnosis => {
 
-export default toNewPatientEntry;
+
+    if ( !object || typeof object !== 'object' ) {
+        throw new Error('Incorrect or missing data');
+    }
+
+    if ("code" in object && "name" in object && "latin" in object) {
+        const newEntry: Diagnosis = {
+            code: parseCode(object.code),
+            name: parseName(object.name),
+            latin: parseLatin(object.latin)
+        };
+        return newEntry;
+    }
+    else {
+        throw new Error('Incorrect or missing data');
+    }
+};
+
+const parseCode = (code: unknown): string => {
+    if (!code || !isString(code)) {
+        throw new Error('Incorrect or missing code: ' + code);
+    }
+
+    return code;
+};
+
+const parseLatin = (latin: unknown): string => {
+    if (!latin || !isString(latin)) {
+        throw new Error('Incorrect or missing latin: ' + latin);
+    }
+
+    return latin;
+
+};
+
 
 

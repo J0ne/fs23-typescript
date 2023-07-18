@@ -44,10 +44,10 @@ export interface HospitalEntry extends BaseEntry {
 
 export type EntryType = HealthCheckEntry | OccupationalHealthcareEntry | HospitalEntry;
 
-// Define special omit for unions
+// //Define special omit for unions
 // type UnionOmit<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never;
 
-// Define Entry without the 'id' property
+// //Define Entry without the 'id' property
 // type EntryWithoutId = UnionOmit<Entry, 'id'>;
 
 export interface Entry extends BaseEntry {
@@ -80,7 +80,9 @@ export type NonSensitivePatientEntry = Omit<Patient, 'ssn' | 'entries'>;
 
 export type NewPatientEntry = Omit<Patient, 'id'>;
 
+export type PublicPatient = Omit<Patient, 'ssn' | 'entries'>;
 
+export type NewEntry = Omit<Entry, 'id'>;
 
 
 
