@@ -27,3 +27,58 @@ content-type: application/json
     "name": "Something of new",
     "latin": "lorem ipsum"
 }
+
+###
+POST http://localhost:3001/api/patients/d2773336-f723-11e9-8f0b-362b9e155667/entries
+content-type: application/json
+
+{
+    "type": "Hospital",
+    "description": "Patient got sick",
+    "date": "2019-08-05",
+    "specialist": "Dr. Feelgood",
+    "diagnosisCodes": [
+          "Z74.3",
+          "M51.2"
+    ],
+    "discharge": {
+        "date": "2019-08-05",
+        "criteria": "Healing"
+    }
+}
+
+###
+POST http://localhost:3001/api/patients/d2773336-f723-11e9-8f0b-362b9e155667/entries
+content-type: application/json
+
+{
+    "type": "OccupationalHealthcare",
+    "description": "Patient got sick",
+    "date": "2019-08-05",
+    "specialist": "Dr. Feelgood",
+    "diagnosisCodes": [
+          "Z74.3",
+          "M51.2"
+    ],
+    "employerName": "Acme Inc.",
+    "sickLeave": {
+        "startDate": "2019-08-05",
+        "endDate": "2019-08-05"
+    }
+}
+
+###
+POST http://localhost:3001/api/patients/d2773336-f723-11e9-8f0b-362b9e155667/entries
+content-type: application/json
+
+{
+    "type": "HealthCheck",
+    "description": "Patient got sick",
+    "date": "2019-08-05",
+    "specialist": "Dr. Feelgood",
+    "diagnosisCodes": [
+          "Z74.3",
+          "M51.2"
+    ],
+    "healthCheckRating": 0
+}

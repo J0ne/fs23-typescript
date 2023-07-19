@@ -10,7 +10,7 @@ interface BaseEntry {
   description: string;
   date: string;
   specialist: string;
-  diagnosisCodes?: Diagnosis['code'][];
+  diagnosisCodes?: Array<Diagnosis['code']>;
 }
 
 export enum HealthCheckRating {
@@ -44,11 +44,11 @@ export interface HospitalEntry extends BaseEntry {
 
 export type EntryType = HealthCheckEntry | OccupationalHealthcareEntry | HospitalEntry;
 
-// //Define special omit for unions
-// type UnionOmit<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never;
+//Define special omit for unions
+type UnionOmit<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never;
 
-// //Define Entry without the 'id' property
-// type EntryWithoutId = UnionOmit<Entry, 'id'>;
+//Define Entry without the 'id' property
+export type EntryWithoutId = UnionOmit<Entry, 'id'>;
 
 export interface Entry extends BaseEntry {
     type: EntryType | string;
