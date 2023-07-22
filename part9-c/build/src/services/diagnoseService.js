@@ -13,7 +13,13 @@ const getNonSensitiveEntries = () => {
         name
     }));
 };
+const addNewDiagnosis = (entry) => {
+    const newDiagnosisEntry = Object.assign({}, entry);
+    diagnoses_1.default.push(newDiagnosisEntry);
+    return newDiagnosisEntry;
+};
 exports.default = {
     getEntries,
-    getNonSensitiveEntries
+    getNonSensitiveEntries,
+    addNewDiagnosis
 };
