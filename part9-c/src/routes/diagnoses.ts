@@ -20,10 +20,6 @@ diagnosesRouter.post('/', (req, res) => {
 );
 
 
-
-
-
-
 export default diagnosesRouter;
 
 

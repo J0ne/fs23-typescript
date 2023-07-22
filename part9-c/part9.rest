@@ -11,7 +11,7 @@ GET http://localhost:3001/api/patients
 
 
 ###
-GET http://localhost:3001/api/patients/d2773336-f723-11e9-8f0b-362b9e155667
+GET http://localhost:3001/api/patients/d2773598-f723-11e9-8f0b-362b9e155667
 
 
 ###
@@ -82,3 +82,36 @@ content-type: application/json
     ],
     "healthCheckRating": 0
 }
+
+###
+POST http://localhost:3001/api/patients/d2773336-f723-11e9-8f0b-362b9e155667/entries
+content-type: application/json
+
+{
+    "type": "HealthCheck",
+    "description": "Patient got sick",
+    "date": "2019-08-05",
+    "specialist": "Dr. Feelgood",
+    "diagnosisCodes": [
+          "Z74.3",
+          "M51.2"
+    ],
+    "healthCheckRating": 0
+}
+
+### request for adding patient
+POST http://localhost:3001/api/patients
+Content-Type: application/json
+
+{
+    "dateOfBirth": "2019-08-05",
+    "name": "John",
+    "gender": "male",
+    "ssn": "123-456-7890",
+    "occupation": "doctor"
+}
+
+### request for adding patient
+GET http://localhost:3001/api/patients/4a2d45f0-2880-11ee-a942-9baf755e737d
+
+

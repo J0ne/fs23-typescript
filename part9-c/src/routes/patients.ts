@@ -26,19 +26,25 @@ patientsRouter.get('/:id', (req, res) => {
 
 patientsRouter.post('/:id/entries', (req, res) => {
     const patient = patientService.getEntries().find(p => p.id === req.params.id);
-    const newEntry = toNewEntry(req.body);
-    if (patient && newEntry) {
+
+    try {
+        const newEntry = toNewEntry(req.body);
+        if (patient && newEntry) {
 
         const updatedPatient = patientService.addEntry(patient, newEntry);
-        console.log('updatedPatient', updatedPatient);
         res.json(updatedPatient);
-    } else {
+      } else {
         res.sendStatus(404);
+         }
     }
+    catch (e) {
+        if(e instanceof Error){
+            console.log(e.message);
+            res.status(400).send(e.message);
+        }
+    }
+
 });
-
-
-
 
 
 export default patientsRouter;
